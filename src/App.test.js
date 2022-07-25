@@ -51,3 +51,23 @@ test("when minus btn click, the counter is -1", () => {
   const counterElem = screen.getByTestId("counter");
   expect(counterElem).toHaveTextContent(-1);
 });
+
+test("on/off btn is blue color", () => {
+  render(<App />);
+  const onOffBtnElem = screen.getByTestId("on-off-btn");
+  // expect(onOffBtnElem).toHaveStyle("background-color:blue");
+  expect(onOffBtnElem).toHaveStyle({ backgroundColor: "blue" });
+});
+
+test("when on/off btn click, plus, minus button have to dsiabled ", () => {
+  //given
+  render(<App />);
+  const onOffBtnElem = screen.getByTestId("on-off-btn");
+  //when
+  fireEvent.click(onOffBtnElem);
+  //then
+  const minusBtnElem = screen.getByTestId("minus-btn");
+  const plusBtnElem = screen.getByTestId("plus-btn");
+  expect(minusBtnElem).toBeDisabled();
+  expect(plusBtnElem).toBeDisabled();
+});
